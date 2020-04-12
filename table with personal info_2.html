@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Table</title>
     <style>
-        div forms {
+        div form {
             display: inline-block;
         }
 
@@ -12,7 +12,7 @@
             display: inline-block;
         }
 
-        div tables, th, td {
+        div table, th, td {
             border: 1px solid black;
             text-align: left;
         }
@@ -41,13 +41,14 @@
     <button type="button" onclick="dataEntry()">Submit</button>
 </div>
 <br><br><br><br>
-<div tables>
+<div>
     <table id="show">
         <tr>
             <th>First name</th>
             <th>Middle name</th>
             <th>Last name</th>
             <th>Address</th>
+            <th>Delete</th>
         </tr>
     </table>
 </div>
@@ -59,18 +60,26 @@
         var lastNameInput = document.getElementById("lname").value;
         var addressInput = document.getElementById("addr").value;
 
+
         var tableShow = document.getElementById("show");
         var insertRow = tableShow.insertRow(-1);
+        var index = insertRow.rowIndex;
 
         var firstCell = insertRow.insertCell(0);
         var secondCell = insertRow.insertCell(1);
         var thirdCell = insertRow.insertCell(2);
         var fourthCell = insertRow.insertCell(3);
+        var fifthCell = insertRow.insertCell(4);
 
         firstCell.innerHTML = firstNameInput;
         secondCell.innerHTML = middleNameInput;
         thirdCell.innerHTML = lastNameInput;
         fourthCell.innerHTML = addressInput;
+        fifthCell.innerHTML = "<button type=\"button\" name=row" + index + " onclick='deleteRow(" + index + ")'>Delete</button>"
+    }
+
+    function deleteRow(index) {
+        document.getElementsByName("row" + index)[0].parentElement.parentElement.remove();
     }
 
 </script>
